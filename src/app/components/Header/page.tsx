@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 const Header = (props: {
@@ -54,7 +55,8 @@ const Header = (props: {
           {/* <!-- Hamburger Toggle BTN --> */}
 
           <Link className="block flex-shrink-0 lg:hidden" href="/">
-            <img src="/logo.jpeg" alt="Logo" />
+            {/* <img src="/logo.jpeg" alt="Logo" /> */}
+            <Image src="/logo.jpeg" alt="Logo" />
           </Link>
         </div>
 

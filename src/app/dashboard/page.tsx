@@ -36,7 +36,6 @@ export default function Dashboard() {
       })
       .then((response) => {
         setPackageData(response.data.data);
-        console.log(response.data.data, "data not displaying");
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -46,7 +45,7 @@ export default function Dashboard() {
   const handleApproveCreator = (creatorId: string) => {
     axios
       .post(
-        `http://157.245.4.44/api/Admin/ApproveCreator?=${creatorId}`,
+        `http://157.245.4.44/api/Admin/ApproveCreator?creatorId=${creatorId}`,
         {},
         {
           headers: {
@@ -55,13 +54,13 @@ export default function Dashboard() {
         }
       )
       .then((response) => {
-        // Assuming the API returns a success message
+        // if the api returns a success message
+        console.log(response.data, 'response successful')
         setShowConfirmation(true);
         console.log("Creator approved successfully.");
       })
       .catch((error) => {
         console.error("Error approving creator:", error);
-        // Handle error scenario
       });
   };
 
