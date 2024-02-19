@@ -7,16 +7,17 @@ import ConfirmationModal from "../components/modal/ConfirmationModal";
 
 
 interface PackageData {
+    id: string;
     gender: string;
     bio: string;
     isApproved: boolean;
-    creatorId: string;
   }
 
 export default function Dashboard() {
   const router = useRouter();
   const [packageData, setPackageData] = useState<PackageData[]>([]);
   const [showConfiramation, setShowConfirmation] = useState(false)
+  // const [selectedCreatorId, setSelectedCreatorId] = useState<string | null>(null);
 
   // Check if username and token are present in session storage
   const username = cookie.get("username");
@@ -44,9 +45,8 @@ export default function Dashboard() {
 
   const handleApproveCreator = (creatorId: string) => {
     axios
-      .post(
+      .get(
         `http://157.245.4.44/api/Admin/ApproveCreator?creatorId=${creatorId}`,
-        {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,17 +57,17 @@ export default function Dashboard() {
         // if the api returns a success message
         console.log(response.data, 'response successful')
         setShowConfirmation(true);
-        console.log("Creator approved successfully.");
       })
       .catch((error) => {
         console.error("Error approving creator:", error);
       });
   };
+  
 
   return (
     <div>
       <ConfirmationModal isVisible={showConfiramation} onClosed={()=> setShowConfirmation(false)}>
-        <h1 className="text-center">Creator approved successfully.</h1>
+        <h1 className="text-center bg-white py-8 px-4 rounded-md">Creator approved successfully.</h1>
       </ConfirmationModal>
       <div className="flex justify-between items-start mb-10 py-2 border-b border-gray-300">
         <h1>Business</h1>
@@ -100,31 +100,31 @@ export default function Dashboard() {
             </tr>
           </thead>
           <tbody className="min-w-full divide-y">
-            {packageData.map((data, index) => (
+            {packageData.map((data) => (
               <tr
-                key={index}
+                key={data.id}
                 className="border-b border-gray-200 hover:bg-gray-200 cursor-pointer"
               >
                 <td
                   className="py-4 px-2 whitespace-nowrap"
-                  onClick={() => handleApproveCreator(data.creatorId)}
+                  onClick={() => handleApproveCreator(data.id)}
                 >
                   {data.gender}
                 </td>
                 <td
                   className="py-4 px-2 whitespace-nowrap"
-                  onClick={() => handleApproveCreator(data.creatorId)}
+                  onClick={() => handleApproveCreator(data.id)}
                 >
                   {data.bio}
                 </td>
                 <td
                   className="py-4 px-2 whitespace-nowrap"
-                  onClick={() => handleApproveCreator(data.creatorId)}
+                  onClick={() => handleApproveCreator(data.id)}
                 >
                   {data.isApproved}
                 </td>
-                <td className="flex items-center py-4 px-2">
-                  <div className="flex items-end ml-auto">
+                <td className="flex justify-end py-4 px-2">
+                  <div>
                     <span
                       className="flex gap-1 items-center text-mygreen-100"
                       onClick={() => {}}
