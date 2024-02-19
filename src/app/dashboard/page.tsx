@@ -127,10 +127,10 @@ export default function Dashboard() {
                   <div>
                     <span
                       className="flex gap-1 items-center text-mygreen-100"
-                      onClick={() => {}}
+                      onClick={() => handleApproveCreator(data.id)}
                     >
                       <span>{/*<MdAddCircleOutline />*/}</span>
-                      <span>Add Route</span>
+                      <span>Approve</span>
                     </span>
                     <span
                       className="text-darkBlue-100 cursor-pointer mx-3 "
