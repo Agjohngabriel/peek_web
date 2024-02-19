@@ -31,7 +31,7 @@ jobs:
               git checkout main
               git pull origin main
             else
-              git clone git@github.com:Agjohngabriel/trucki_web.git .
+              git clone git@github.com:Agjohngabriel/peek_web.git .
               git checkout main
             fi
             
