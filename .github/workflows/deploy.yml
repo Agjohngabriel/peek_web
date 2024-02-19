@@ -1,0 +1,46 @@
+name: Deploy to Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: SSH into VPS and Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+          script: |
+            cd web || (mkdir -p "web" && cd "web")  # Create directory if needed and enter it
+            
+            git config --global user.email "agjohngabriel@gmail.com"
+            git config --global user.name "agjohngabriel"
+            
+            if [ -d ".git" ]; then
+              git fetch --all
+              git checkout main
+              git pull origin main
+            else
+              git clone git@github.com:Agjohngabriel/trucki_web.git .
+              git checkout main
+            fi
+            
+            ls -la
+            
+            npm install
+            
+            docker build -t peek-web .
+            
+            docker stop peek-web || true
+            docker rm peek-web || true
+            docker run -d -p 3000:3000 --name peek-web peek-web:latest
