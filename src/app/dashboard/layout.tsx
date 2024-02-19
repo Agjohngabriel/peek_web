@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, ReactNode } from "react";
 import Sidebar from "@/app/components/Sidebar/page";
-import Header from "@/app/components/Header/page";
 import { useRouter } from "next/navigation";
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
