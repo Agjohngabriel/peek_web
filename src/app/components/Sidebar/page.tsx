@@ -24,7 +24,7 @@ const Sidebar = () => {
   return (
     <aside className="bg-gray-200 h-full flex flex-col px-6 transition-all duration-200">
       <div className="mb-10 pt-7 pl-2">
-        <Image src="/logo.jpeg" width={100} height={100} alt="" />
+        <Image src="/site/logo.jpeg" width={100} height={100} alt="" />
       </div>
       <ul className="mt-6">
         {routes.map((routeItem, index) => (
