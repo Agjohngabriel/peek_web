@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
@@ -12,7 +13,7 @@ const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup.string().required("Password is required"),
 });
-// use client
+
 export default function Home() {
   const router = useRouter();
   const {
@@ -21,6 +22,7 @@ export default function Home() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const [isLoading, setIsLoading] = useState(false);
+  
   const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {

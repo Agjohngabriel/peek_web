@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     console.log("Logging out...");
-    router.push("/v1");
+    router.push("/");
   };
 
   return (
