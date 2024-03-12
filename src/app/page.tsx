@@ -25,7 +25,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://157.245.4.44/api/Auth/Login",
+        "https://app.thepeekentertainment.com/api/Auth/Login",
         data
       );
 

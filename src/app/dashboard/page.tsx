@@ -46,7 +46,7 @@ export default function Dashboard() {
       }
 
       axios
-          .get("http://157.245.4.44/api/Admin/GetAllCreators", {
+          .get("https://app.thepeekentertainment.com/api/Admin/GetAllCreators", {
               headers: {
                   Authorization: `Bearer ${token}`,
               },
@@ -66,7 +66,7 @@ export default function Dashboard() {
       setIsLoading(true);
     axios
       .get(
-        `http://157.245.4.44/api/Admin/ApproveCreator?creatorId=${creatorId}`,
+        `https://app.thepeekentertainment.com/api/Admin/ApproveCreator?creatorId=${creatorId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
