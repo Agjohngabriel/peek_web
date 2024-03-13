@@ -4,12 +4,17 @@ import React from "react";
 export const routes = [
     {
         name: "Dashboard",
-        layout: "dashboard",
+        layout: "/dashboard",
         icon: <GrProjects/>,
     },
     {
         name: "Creators",
-        layout: "creators",
+        layout: "/dashboard/creators",
+        icon: <GrProjects/>,
+    },
+    {
+        name: "Users",
+        layout: "/dashboard/users",
         icon: <GrProjects/>,
     },
 ];

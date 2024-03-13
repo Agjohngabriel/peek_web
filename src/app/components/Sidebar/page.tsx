@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     console.log("Logging out...");
-    router.push("/v1");
+    router.push("/");
   };
 
   return (
@@ -32,7 +32,7 @@ const Sidebar = () => {
             <li
               className={`w-fit flex justify-start items-center py-4 rounded-md hover:text-darkBlue-100 hover:bg-white-100 px-6 ${
                 routerName === routeItem.layout
-                  ? "text-darkBlue-100  "
+                  ? "text-yellow-700  "
                   : "text-gray-500"
               }`}
             >
