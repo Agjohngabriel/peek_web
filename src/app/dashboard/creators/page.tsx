@@ -9,6 +9,8 @@ import Pagination from "@/app/components/Pagination";
 import {BASE_URL, GET_ALL_CREATORS} from "@/constant";
 import DateRangePicker from "@/app/components/DateRangePicker";
 import Preloader from "@/app/components/Preloader";
+import Link from "next/link";
+import api from "@/api";
 
 
 export interface ExploreCreators {
@@ -85,19 +87,14 @@ export default function Creators() {
         fetchAllCreators(); // Fetch data for the new page
     };
 
-    const fetchAllCreators = () => {
+    const fetchAllCreators = async () => {
         if (!username || !token) {
             router.push("/");
             return;
         }
         setIsLoading(true);
         const queryParams = buildQueryParams();
-        axios
-            .get(`${GET_ALL_CREATORS}?${queryParams}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+        await api.get(`${GET_ALL_CREATORS}?${queryParams}`,)
             .then((response) => {
                 setCreators(response.data.data.results);
                 setTotalCount(response.data.data.totalCount);
@@ -113,29 +110,6 @@ export default function Creators() {
     useEffect(() => {
         fetchAllCreators();
     }, [startDate, endDate]);
-    const handleApproveCreator = (creatorId: string) => {
-        setIsLoading(true);
-        axios
-            .get(
-                `https://app.thepeekentertainment.com/api/Admin/ApproveCreator?creatorId=${creatorId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
-            .then((response) => {
-                // if the api returns a success message
-                console.log(response.data, 'response successful')
-                fetchAllCreators();
-                setShowConfirmation(true);
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                console.error("Error approving creator:", error);
-            });
-    };
     return (
         <div>
             {isLoading && <Preloader />} {/* Show Preloader if loading */}
@@ -226,8 +200,8 @@ export default function Creators() {
                     <tbody>
                     {createors.map((data) => <tr key={data.id}
                                                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row"
-                            className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row">
+                            <Link  href={'/dashboard/creators/' + data.id} className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                             <img className="w-10 h-10 rounded-full" src={data.idScanned}
                                  alt="Jese image"/>
                             <div className="ps-3">
@@ -235,6 +209,7 @@ export default function Creators() {
                                     className="text-base font-semibold">{data.user.firstName} {data.user.lastName}</div>
                                 <div className="font-normal text-gray-500">{data.user.email}</div>
                             </div>
+                            </Link>
                         </th>
                         <td className="px-6 py-4">
                             {new Date(data.user.createdAt).toLocaleDateString('en-US', {

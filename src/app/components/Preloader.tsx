@@ -18,7 +18,7 @@ const Preloader = () => {
                     isFadingOut ? "opacity-100" : "opacity-100"
                 }`}
                 style={{
-                    background: "rgba(255, 255, 255, 0.8)",
+                    background: "rgba(255, 255, 255, 0.3)",
                 }}
             >
                 <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>
