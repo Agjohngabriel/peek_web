@@ -3,7 +3,8 @@ import React, { useState, ReactNode } from "react";
 import Sidebar from "@/app/components/Sidebar/page";
 import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
-
+import Image from "next/image";
+import imageAsset from '@/app/components/logo.jpeg';
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [toggleSidebar, setToggleSidebar] = useState<boolean>(false);
   // const { isAuthenticated } = useContext(AuthContext);
@@ -38,7 +39,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                               </svg>
                           </button>
                           <a href="https://app.thepeekentertainment.com/site" className="flex ms-2 md:me-24">
-                              <img src="/logo.jpeg" className="h-8 me-3"
+                              <Image src={imageAsset} className="h-8 me-3" width={50} height={50}
                                    alt="Peek Entertainment"/>
                               <span
                                   className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Peek</span>
@@ -51,8 +52,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                                           className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                           aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                       <span className="sr-only">Open user menu</span>
-                                      <img className="w-8 h-8 rounded-full"
-                                           src="/logo.jpeg"
+                                      <Image src={imageAsset} className="w-8 h-8 rounded-full" width={50} height={50}
                                            alt="user photo"/>
                                   </button>
                               </div>
