@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import {ApproveCreator, GET_CREATOR_By_Id} from "@/constant";
 import api from "@/api";
+import {CreatorDetail} from "@/types/creators";
 import axios from "axios";
 import ConfirmationModal from "@/app/components/modal/ConfirmationModal";
 

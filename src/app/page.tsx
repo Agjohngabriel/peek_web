@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import cookie from "js-cookie";
 import { useState } from "react";
 import {LOGIN_ENDPOINT} from "@/constant";
+import api from "@/api";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -25,7 +26,7 @@ export default function Home() {
   const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
+      const response = await api.post(
         `${LOGIN_ENDPOINT}`,
         data
       );

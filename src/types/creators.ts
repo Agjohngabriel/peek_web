@@ -17,7 +17,7 @@ interface User {
     updatedAt: string;
 }
 
-interface CreatorDetail {
+export interface CreatorDetail {
     id: string;
     dateOfBirth: string;
     idScanned: string;
@@ -29,4 +29,28 @@ interface CreatorDetail {
     subscriptionCount: number;
     postCount: number;
     likeCount: number;
+}
+
+
+
+export interface AdminDashboardData {
+    totalCreators:              number;
+    totalUsers:                 number;
+    totalRevenue:               number;
+    totalIncome:                number;
+    totalLikes:                 number;
+    totalSubscriptions:         number;
+    totalAmountSubscribed:      number;
+    totalCashWithdrawn:         number;
+    totalPaidPostSubscriptions: number;
+    totalPaidChatSubscriptions: number;
+    totalPaidCallSubscriptions: number;
+    monthlyRevenues:            MonthlyRevenue[];
+}
+
+export interface MonthlyRevenue {
+    year:             number;
+    month:            number;
+    subscriptionType: number;
+    revenue:          number;
 }

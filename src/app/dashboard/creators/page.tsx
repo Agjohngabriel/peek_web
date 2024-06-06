@@ -234,8 +234,8 @@ export default function Creators() {
                                 }}
                                 className="font-medium text-green dark:text-green-500 hover:underline mr-7">View Idcard
                             </button>
-                            <a href="#"
-                               className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <Link href={'/dashboard/creators/' + data.id}
+                               className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
                         </td>
                     </tr>)}
                     </tbody>
