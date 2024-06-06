@@ -8,6 +8,7 @@ import ConfirmationModal from "@/app/components/modal/ConfirmationModal";
 import Pagination from "@/app/components/Pagination";
 import {BASE_URL, GET_ALL_CREATORS} from "@/constant";
 import DateRangePicker from "@/app/components/DateRangePicker";
+import Preloader from "@/app/components/Preloader";
 
 
 export interface ExploreCreators {
@@ -71,7 +72,6 @@ export default function Creators() {
         setEndDate(end ? end.toISOString().slice(0, 10) : "");
         fetchAllCreators();
     };
-
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const query = event.target.value;
         setSearchQuery(query);
@@ -90,6 +90,7 @@ export default function Creators() {
             router.push("/");
             return;
         }
+        setIsLoading(true);
         const queryParams = buildQueryParams();
         axios
             .get(`${GET_ALL_CREATORS}?${queryParams}`, {
@@ -104,10 +105,14 @@ export default function Creators() {
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
+        setIsLoading(false)
     }
     useEffect(() => {
         fetchAllCreators()
     }, [username, token, router]);
+    useEffect(() => {
+        fetchAllCreators();
+    }, [startDate, endDate]);
     const handleApproveCreator = (creatorId: string) => {
         setIsLoading(true);
         axios
@@ -131,10 +136,9 @@ export default function Creators() {
                 console.error("Error approving creator:", error);
             });
     };
-
-
     return (
         <div>
+            {isLoading && <Preloader />} {/* Show Preloader if loading */}
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <div
                     className="flex  flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
