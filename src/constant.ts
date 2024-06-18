@@ -7,3 +7,4 @@ export const GET_CREATOR_By_Id = `/Admin/GetCreatorByID`;
 export const ApproveCreator = `/Admin/ApproveCreator`;
 export const GetDashBoardData = `/Admin/GetDashboardData`;
 export const GetSUPPORT = `/api/Support`;
+export const GET_ALL_PENDING_CREATORS = `/Admin/GetAllPendingCreators`;

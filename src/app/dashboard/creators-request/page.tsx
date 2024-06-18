@@ -6,7 +6,7 @@ import axios from "axios";
 import {MdAddCircleOutline} from "react-icons/md";
 import ConfirmationModal from "@/app/components/modal/ConfirmationModal";
 import Pagination from "@/app/components/Pagination";
-import {BASE_URL, GET_ALL_CREATORS} from "@/constant";
+import {BASE_URL, GET_ALL_CREATORS, GET_ALL_PENDING_CREATORS} from "@/constant";
 import DateRangePicker from "@/app/components/DateRangePicker";
 import Preloader from "@/app/components/Preloader";
 import Link from "next/link";
@@ -34,7 +34,7 @@ export interface User {
     updatedAt: Date;
 }
 
-export default function Creators() {
+export default function CreatorsRequest() {
     const router = useRouter();
     const [createors, setCreators] = useState<ExploreCreators[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -94,7 +94,7 @@ export default function Creators() {
         }
         setIsLoading(true);
         const queryParams = buildQueryParams();
-        await api.get(`${GET_ALL_CREATORS}?${queryParams}`,)
+        await api.get(`${GET_ALL_PENDING_CREATORS}?${queryParams}`,)
             .then((response) => {
                 setCreators(response.data.data.results);
                 setTotalCount(response.data.data.totalCount);
@@ -143,10 +143,9 @@ export default function Creators() {
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption
                         className="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                        Creators
-                        <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of
-                            Peek creators designed to help you work and play, stay organized, get answers, keep in
-                            touch, grow your business, and more.</p>
+                        Creators Request
+                        <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of pending
+                            Peek creators designed to help you welcome and approve new creators</p>
                     </caption>
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>

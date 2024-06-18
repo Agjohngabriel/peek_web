@@ -87,7 +87,7 @@ const CreatorsDetail= ({ params }: { params: { creatorId: string } }) => {
                                         <div className="w-20 lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                             <div className="relative">
                                                 <img alt="Profile" src={creator?.holdingId}
-                                                     className="shadow-xl h-[200px] rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-40"/>
+                                                     className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-40"/>
                                             </div>
                                         </div>
                                         <div
